@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Itinerary</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/itinerary.css">
+</head>
+<body>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const loggedInHeader = document.getElementById("loggedInHeader");
+            const loggedOutHeader = document.getElementById("loggedOutHeader");
+            const authLink = document.getElementById("authLink");
+        
+            if (localStorage.getItem("loggedInUser")) {
+                // User is logged in
+                loggedInHeader.style.display = "block";
+                loggedOutHeader.style.display = "none";
+        
+                // Set Logout functionality
+                authLink.innerHTML = '<a href="#" id="logoutBtn">Logout</a>';
+                document.getElementById("logoutBtn").addEventListener("click", function (event) {
+                    event.preventDefault();
+                    localStorage.removeItem("loggedInUser");
+                    alert("Logged out successfully!");
+                    window.location.href = "/index.html";
+                });
+            } else {
+                // User is not logged in
+                loggedInHeader.style.display = "none";
+                loggedOutHeader.style.display = "block";
+            }
+        });
+        
+            </script>
+            <!-- Header for logged-in users -->
+            <header id="loggedInHeader">
+                <header>
+                <div class="logo">
+                    <a href="#"><img src="/images/logo.jpg" alt="logo"></a>
+                </div>
+                <nav class="nav-menu">
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#destinations">Destinations</a></li>
+                        <li><a href="#about-us">About us</a></li>
+                        <li><a href="#contact-us">Contact us</a></li>
+                        <li><a href="/bookings.html">Bookings</a></li>
+                        <li><a href="/addvisit.html">Planned trips</a></li>
+                        <li id="authLink"><a href="#">Logout</a></li>
+                    </ul>
+                </nav>
+            </header>
+            </header>
+        
+            <!-- Header for non-logged-in users -->
+            <header id="loggedOutHeader">
+                <header>
+                <div class="logo">
+                    <a href="#"><img src="/images/logo.jpg" alt="logo"></a>
+                </div>
+                <nav class="nav-menu index">
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="#destinations">Destinations</a></li>
+                        <li><a href="#about-us">About us</a></li>
+                        <li><a href="#contact-us">Contact us</a></li>
+                        <li><a href="/register.html">Register</a></li>
+                        <li><a href="/addvisit.html">Planned trips</a></li>
+                        <li id="authLink"><a href="/login.html">Login</a></li>
+                    </ul>
+                </nav>
+            </header>
+            </header>
+        
+    <script src="/js/itineraryData.js"></script>
+    <div class="container">
+        <h1 id="place-name" class="heading">Itinerary</h1>
+        <div id="itinerary-content" class="itinerary-card"></div>
+    </div>
+
+</body>
+</html>

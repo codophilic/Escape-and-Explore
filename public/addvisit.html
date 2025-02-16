@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Travel List</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        /* General Styling */
+body {
+    font-family: "Poppins", sans-serif;
+    background: #f0f4f8;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.container {
+    max-width: 800px;
+    margin: 30px auto;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.page-title {
+    font-size: 2em;
+    font-weight: bold;
+    color: #222;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+.travel-list-container {
+    margin-top: 20px;
+}
+
+/* Visit Cards */
+.visit-card {
+    background: #fff;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 8px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.visit-card:hover {
+    transform: scale(1.02);
+    box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+.visit-details {
+    text-align: left;
+}
+
+.visit-details h3 {
+    margin: 0;
+    color: #333;
+}
+
+.visit-details p {
+    margin: 5px 0;
+    color: #666;
+}
+
+/* Delete Button */
+.delete-btn {
+    background: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background 0.3s ease-in-out;
+}
+
+.delete-btn:hover {
+    background: #cc0000;
+}
+
+/* No Visits Message */
+.no-visit {
+    font-size: 1.2em;
+    color: #777;
+}
+
+/* Back Button */
+.back-button {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background 0.3s ease-in-out;
+}
+
+.back-button:hover {
+    background: #0056b3;
+}
+
+.travel-list-container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.travel-list-title {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+#visit-list {
+    list-style: none;
+    padding: 0;
+}
+
+.visit-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+.visit-name {
+    font-size: 18px;
+    font-weight: 600;
+    color: #007BFF;
+}
+
+.visit-price {
+    font-size: 16px;
+    color: #28a745;
+}
+
+.delete-btn {
+    background: #dc3545;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.delete-btn:hover {
+    background: #c82333;
+}
+
+.total-price {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 15px 0;
+    color: #333;
+}
+
+.checkout-btn {
+    background: #28a745;
+    color: white;
+    font-size: 18px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.checkout-btn:hover {
+    background: #218838;
+}
+
+.empty-list {
+    font-size: 18px;
+    color: #888;
+}
+
+
+    </style>
+</head>
+<body>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const authLink = document.getElementById("authLink");
+
+            // Check if user is logged in
+            if (!localStorage.getItem("loggedInUser")) {
+                window.location.href = "/login.html"; // Redirect if not logged in
+            } else {
+                // Set Logout functionality
+                authLink.innerHTML = '<a href="#" id="logoutBtn">Logout</a>';
+                document.getElementById("logoutBtn").addEventListener("click", function (event) {
+                    event.preventDefault(); // Prevent default anchor behavior
+                    localStorage.removeItem("loggedInUser"); // Remove user session
+                    alert("Logged out successfully!"); // Show logout success message
+                    window.location.href = "/index.html"; // Redirect to homepage
+                });
+            }
+        });
+    </script>
+    <header id="loggedInHeader">
+        <div class="logo">
+            <a href="#"><img src="/images/logo.jpg" alt="logo"></a>
+        </div>
+        <nav class="nav-menu">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="#destinations">Destinations</a></li>
+                <li><a href="#about-us">About Us</a></li>
+                <li><a href="#contact-us">Contact Us</a></li>
+                <li><a href="/bookings.html">Bookings</a></li>
+                <li><a href="/addvisit.html">Planned trips</a></li>
+                <li id="authLink"><a href="#">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="travel-list-container">
+        <h1 class="travel-list-title">My Travel List</h1>
+        <ul id="visit-list"></ul>
+        <p id="total-price" class="total-price">Total Price: ₹0</p>
+        <button id="checkout-button" class="checkout-btn">Proceed to Checkout</button>
+    </div>
+
+    <script src="/js/addvisit.js"></script>
+</body>
+</html>
