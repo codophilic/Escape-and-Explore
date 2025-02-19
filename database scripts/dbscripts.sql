@@ -19,6 +19,7 @@ USE escapeandexplore;
  ('Harsh','hp','1234','abc'), ('Harleen','HP','1234','xyz');
  
  select * from user_table;
+ truncate user_table;
 
   CREATE TABLE user_visits (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -29,7 +30,7 @@ USE escapeandexplore;
 );
 
  select * from user_visits;
- truncate user_visits;
+ truncate bookings;
  create table bookings(
      bookingid INT AUTO_INCREMENT PRIMARY KEY,
      user_id varchar(255) NOT NULL,
