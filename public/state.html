@@ -223,10 +223,10 @@ document.addEventListener("DOMContentLoaded", function () {
         </div>
         <nav class="nav-menu">
             <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#destinations">Destinations</a></li>
-                <li><a href="#about-us">About us</a></li>
-                <li><a href="#contact-us">Contact us</a></li>
+                <li><a href="/dashboard.html">Home</a></li>
+                <li><a href="/dashboard.html/#destinations">Destinations</a></li>
+                <li><a href="/dashboard.html/#about-us">About us</a></li>
+                <li><a href="/dashboard.html/#contact-us">Contact us</a></li>
                 <li><a href="/bookings.html">Bookings</a></li>
                 <li><a href="/addvisit.html">Planned trips</a></li>
                 <li id="authLink"><a href="#">Logout</a></li>
@@ -244,9 +244,9 @@ document.addEventListener("DOMContentLoaded", function () {
         <nav class="nav-menu index">
             <ul>
                 <li><a href="/">Home</a></li>
-                <li><a href="#destinations">Destinations</a></li>
-                <li><a href="#about-us">About us</a></li>
-                <li><a href="#contact-us">Contact us</a></li>
+                <li><a href="/index.html/#destinations">Destinations</a></li>
+                <li><a href="/index.html/#about-us">About us</a></li>
+                <li><a href="/index.html/#contact-us">Contact us</a></li>
                 <li><a href="/register.html">Register</a></li>
                 <li><a href="/addvisit.html">Planned trips</a></li>
                 <li id="authLink"><a href="/login.html">Login</a></li>
@@ -334,7 +334,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
 <script>
     function goHome() {
-        window.location.href = "/"; // Redirects to home page
+        if (localStorage.getItem("loggedInUser")) {
+            window.location.href = "/dashboard.html"; // Redirects to home page
+        }else{
+            window.location.href = "/"; // Redirects to home page
+        }
     }
 </script>
 <script src="/js/stateData.js"></script>

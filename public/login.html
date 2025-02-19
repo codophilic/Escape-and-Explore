@@ -156,7 +156,7 @@ document.getElementById("loginForm").addEventListener("submit", async function(e
     });
 
     const data = await response.json();
-    //console.log(data);  // Debugging: Check backend response
+    // console.log(data.message);  // Debugging: Check backend response
 
     if (data.redirect) {
         // Save login state to localStorage
@@ -166,9 +166,17 @@ document.getElementById("loginForm").addEventListener("submit", async function(e
         document.getElementById("successMessage").style.display = "block";
 
         setTimeout(() => { window.location.href = "/dashboard.html"; }, 2000);  // Redirect to dashboard
-    } else {
+    } else if(data.message==="Invalid password"){
         document.getElementById("successMessage").style.display = "none";
-        document.getElementById("dontexists").style.display = "block";
+        const invalidpass=document.getElementById("dontexists");
+        invalidpass.style.display = "block";
+        invalidpass.innerHTML="Invalid Password Entered!!"
+
+    }else {
+        document.getElementById("successMessage").style.display = "none";
+        const invalidpass=document.getElementById("dontexists");
+        invalidpass.style.display = "block";
+        invalidpass.innerHTML="User Don't Exists! Redirecting to User Registration..."
 
         setTimeout(() => { window.location.href = "/register.html"; }, 2000);
     }

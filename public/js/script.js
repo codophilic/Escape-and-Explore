@@ -327,7 +327,11 @@ window.addEventListener("scroll", handleScroll);
 renderStates();
 
 function goToStatePage(state) {
-    window.location.href = `state?state=${encodeURIComponent(state)}`;
+    //     // Remove hash fragment before redirecting
+    //     history.replaceState(null, null, window.location.pathname);
+    // window.location.href = `state?state=${encodeURIComponent(state)}`;
+    window.location.replace(`/state?state=${encodeURIComponent(state)}`);
+
 }
 
 window.onload = function() {
@@ -353,7 +357,5 @@ function submitBooking(event) {
 
     alert(`Booking Confirmed!\n\nName: ${name}\nEmail: ${email}\nPackage: ${packageSelected}\nAmount: ${amount}`);
 }
-
-module.exports= { places };
 
 

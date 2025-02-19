@@ -29,4 +29,13 @@ USE escapeandexplore;
 );
 
  select * from user_visits;
+ truncate user_visits;
+ create table bookings(
+     bookingid INT AUTO_INCREMENT PRIMARY KEY,
+     user_id varchar(255) NOT NULL,
+         price DECIMAL(10,2),
+    booking_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    booking_status varchar(20),
+    place_to_visit varchar(4000)
+ )
  

@@ -99,6 +99,7 @@ function getStateData(state) {
 
 document.addEventListener("DOMContentLoaded", function () {
     const urlParams = new URLSearchParams(window.location.search);
+    console.log(urlParams);
     const stateName = urlParams.get("state");
 
     if (stateName && statesData[stateName]) {
@@ -140,9 +141,7 @@ words.map(word => `<span>${word}</span>`).join(" ")+  `</p>`;
                 button.addEventListener("click", function () {
                     const cityIndex = this.getAttribute("data-index");
                     const city = placesInfo[cityIndex];
-                    
-                    // Redirect to the itinerary page with the city name as a query parameter
-                    window.location.href = `itinerary?place=${encodeURIComponent(city.name.trim().toLowerCase())}`;
+                    window.location.replace(`itinerary?place=${encodeURIComponent(city.name.trim().toLowerCase())}`);
                 });
             });
         } else {

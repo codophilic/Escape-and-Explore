@@ -3,146 +3,207 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Booking Form</title>
-    <link rel="stylesheet" href="/css/bookings.css">
+    <title>My Bookings</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+        body {
+            font-family: "Poppins", sans-serif;
+            background: linear-gradient(to right, #f9f5f4, #feb47b);
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 0.8s ease-in-out;
+        }
+
+        .page-title {
+            font-size: 2.2em;
+            font-weight: bold;
+            color: #222;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+
+        .booking-list {
+            margin-top: 20px;
+        }
+
+        .booking-card {
+            background: white;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 10px;
+            box-shadow: 3px 3px 12px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: slideIn 0.5s ease-in-out;
+            position: relative;
+        }
+
+        .booking-card:hover {
+            transform: scale(1.02);
+            box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .booking-card h3 {
+            margin: 0;
+            color: #007bff;
+            font-weight: bold;
+        }
+
+        .booking-card p {
+            margin: 5px 0;
+            color: #444;
+        }
+
+        .cancel-button {
+            background: #ff4b5c;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background 0.3s ease;
+        }
+
+        .cancel-button:hover {
+            background: #d43f4b;
+        }
+
+        .back-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 25px;
+            background: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 1.1em;
+            transition: background 0.3s ease-in-out;
+        }
+
+        .back-button:hover {
+            background: #0056b3;
+        }
+
+        /* Notification Styling */
+        .notification {
+            position: fixed;
+            top: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #28a745;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 5px;
+            font-size: 1.1em;
+            font-weight: bold;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+            transition: top 0.5s ease-in-out;
+        }
+
+        .notification.show {
+            top: 20px;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+    </style>
 </head>
 <body>
     <script>
-                document.addEventListener("DOMContentLoaded", function () {
+        document.addEventListener("DOMContentLoaded", function () {
+            const loggedInHeader = document.getElementById("loggedInHeader");
+            const loggedOutHeader = document.getElementById("loggedOutHeader");
             const authLink = document.getElementById("authLink");
-
-            // Check if user is logged in
-            if (!localStorage.getItem("loggedInUser")) {
-                window.location.href = "/login.html"; // Redirect if not logged in
-            } else {
+        
+            if (localStorage.getItem("loggedInUser")) {
+                // User is logged in
+                loggedInHeader.style.display = "block";
+                loggedOutHeader.style.display = "none";
+        
                 // Set Logout functionality
                 authLink.innerHTML = '<a href="#" id="logoutBtn">Logout</a>';
                 document.getElementById("logoutBtn").addEventListener("click", function (event) {
-                    event.preventDefault(); // Prevent default anchor behavior
-                    localStorage.removeItem("loggedInUser"); // Remove user session
-                    alert("Logged out successfully!"); // Show logout success message
-                    window.location.href = "/index.html"; // Redirect to homepage
+                    event.preventDefault();
+                    localStorage.removeItem("loggedInUser");
+                    alert("Logged out successfully!");
+                    window.location.href = "/index.html";
                 });
+            } else {
+                // User is not logged in
+                loggedInHeader.style.display = "none";
+                loggedOutHeader.style.display = "block";
             }
         });
-    </script>
+        
+            </script>
+    <!-- Header for logged-in users -->
+<header id="loggedInHeader">
     <header>
-        <div class="header-container">
-            <h1>Bookings</h1>
-            <nav>
-                <a href="/dashboard.html">Go To Dashboard</a>|
-                <li><a href="/addvisit.html">Planned trips</a></li>
-                
-            </nav>
-        </div>
-    </header>
-    
-    <section id="booking-form">
-        <h2>BOOKING FORM</h2>
-        <form id="form" onsubmit="submitBooking(event)">
-            <div id="booking-container">
-                <div class="booking-entry">
-                    <h3>Place 1</h3>
-                    <label for="package-1">Package Selected:</label>
-                    <input type="text" id="package-1" name="package[]" required>
-                    <br>
-                    <label for="amount-1">Amount:</label>
-                    <input type="text" id="amount-1" name="amount[]" required>
-                    <br>
-                </div>
-            </div>
-            <button type="button" onclick="addBooking()">Add Another Place</button>
-            <br><br>
-            <input type="submit" value="Confirm Booking">
-        </form>
-        <button onclick="window.location.href='dashboard.html'">Go Back</button>
-    </section>
-    
-    <footer>
-        <div class="footer-container">
-            <p>&copy; 2025 Escape & Explore. All Rights Reserved.</p>
-            <div class="social-links">
-                <a href="#">Facebook</a>
-                <a href="#">Twitter</a>
-                <a href="#">Instagram</a>
-            </div>
-        </div>
-    </footer>
-    
-    <script>
+    <div class="logo">
+        <a href="#"><img src="/images/logo.jpg" alt="logo"></a>
+    </div>
+    <nav class="nav-menu">
+        <ul>
+            <li><a href="/dashboard.html">Home</a></li>
+            <li><a href="/dashboard.html/#destinations">Destinations</a></li>
+            <li><a href="/dashboard.html/#about-us">About us</a></li>
+            <li><a href="/dashboard.html/#contact-us">Contact us</a></li>
+            <li><a href="/bookings.html">Bookings</a></li>
+            <li><a href="/addvisit.html">Planned trips</a></li>
+            <li id="authLink"><a href="#">Logout</a></li>
+        </ul>
+    </nav>
+</header>
+</header>
 
-        function submitBooking(event) {
-            event.preventDefault();
-            alert("Booking Confirmed! Proceed to Payment.");
-            window.location.href = 'payment.html';
-        }
-        function addBooking() {
-        const bookingContainer = document.getElementById("booking-container");
+<!-- Header for non-logged-in users -->
+<header id="loggedOutHeader">
+    <header>
+    <div class="logo">
+        <a href="#"><img src="/images/logo.jpg" alt="logo"></a>
+    </div>
+    <nav class="nav-menu index">
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/index.html/#destinations">Destinations</a></li>
+            <li><a href="/index.html/#about-us">About us</a></li>
+            <li><a href="/index.html/#contact-us">Contact us</a></li>
+            <li><a href="/register.html">Register</a></li>
+            <li><a href="/addvisit.html">Planned trips</a></li>
+            <li id="authLink"><a href="/login.html">Login</a></li>
+        </ul>
+    </nav>
+</header>
+</header>
 
-        // Count the number of existing places to generate unique IDs
-        const placeCount = document.querySelectorAll(".booking-entry").length + 1;
+<div id="notification" class="notification"></div>
+    <div class="container">
+        <h1 class="page-title">My Bookings</h1>
+        <div id="booking-list" class="booking-list"></div>
+        <a href="dashboard.html" class="back-button">Back to Home</a>
+    </div>
 
-        // Create a new booking entry
-        const newEntry = document.createElement("div");
-        newEntry.classList.add("booking-entry");
-
-        newEntry.innerHTML = `
-            <h3>Place ${placeCount}</h3>
-            <label for="state-${placeCount}">Select State:</label>
-            <select id="state-${placeCount}" name="state[]" onchange="updatePlaces(${placeCount})">
-                <option value="">Select a State</option>
-                <option value="Madhya Pradesh">Madhya Pradesh</option>
-                <option value="Rajasthan">Rajasthan</option>
-                <option value="Kerala">Kerala</option>
-                <option value="Jammu & Kashmir">Jammu & Kashmir</option>
-                <option value="West Bengal">West Bengal</option>
-            </select>
-            <br>
-            <label for="place-${placeCount}">Select Place:</label>
-            <select id="place-${placeCount}" name="place[]" disabled>
-                <option value="">Select a Place</option>
-            </select>
-            <br>
-            <label for="package-${placeCount}">Package Selected:</label>
-            <input type="text" id="package-${placeCount}" name="package[]" required>
-            <br>
-            <label for="amount-${placeCount}">Amount:</label>
-            <input type="text" id="amount-${placeCount}" name="amount[]" required>
-            <br>
-        `;
-
-        // Append the new entry to the booking container
-        bookingContainer.appendChild(newEntry);
-    }
-
-    function updatePlaces(count) {
-        const stateDropdown = document.getElementById(`state-${count}`);
-        const placeDropdown = document.getElementById(`place-${count}`);
-        placeDropdown.innerHTML = ""; // Clear previous options
-
-        const placesByState = {
-            "Madhya Pradesh": ["Gwalior Fort", "Iskcon Ujjain Temple", "Khajuraho Temple", "Sanchi Stupa", "Sun Temple"],
-            "Rajasthan": ["Hawa Mahal", "Jaisalmer Fort", "Mehrangarh", "Mount-Abu", "Udaipur City Palace"],
-            "Kerala": ["Alleppey Backwaters", "Athirappilly Waterfall", "Kochi", "Lighthouse Beach", "Munnar Tea Gardens"],
-            "Jammu & Kashmir": ["Amarnath Temple", "Bahu Fort", "Dal Lake", "Gurez Valley", "Patnitop"],
-            "West Bengal": ["Botanical Garden", "Darjeeling Toy Train", "Howrah Bridge", "Sundarbans National Park", "Victoria Memorial"]
-        };
-
-        const selectedState = stateDropdown.value;
-
-        if (selectedState && placesByState[selectedState]) {
-            placeDropdown.disabled = false; // Enable dropdown
-            placesByState[selectedState].forEach(place => {
-                let option = document.createElement("option");
-                option.value = place;
-                option.textContent = place;
-                placeDropdown.appendChild(option);
-            });
-        } else {
-            placeDropdown.disabled = true; // Disable if no state selected
-        }
-    }
-    </script>
-    <script src="/Escape-and-explore/script.js"></script>
+    <script src="/js/booking.js"></script>
 </body>
 </html>
