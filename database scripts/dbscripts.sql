@@ -37,5 +37,7 @@ USE escapeandexplore;
     booking_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     booking_status varchar(20),
     place_to_visit varchar(4000)
- )
+ );
+  select * from bookings;
+
  
