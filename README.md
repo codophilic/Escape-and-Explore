@@ -16,7 +16,7 @@ npm install
 ### 3. Run Frontend
 
 ```
-npm run serve
+npm run server
 ```
 
 ### 4. Run Backend
