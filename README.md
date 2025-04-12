@@ -21,7 +21,7 @@ npm run server
 
 ### 4. Run Backend
 
-- Update Configuration file under `.env` with your DB credentials and schema name
+- Update Configuration file under `.env` with your MySQL DB credentials and schema name
 
 ```
 node server.js
