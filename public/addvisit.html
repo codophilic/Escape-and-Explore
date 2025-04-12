@@ -5,11 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Travel List</title>
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="icon" type="image/jpg" href="/images/favicon.jpg">
     <style>
         /* General Styling */
 body {
     font-family: "Poppins", sans-serif;
-    background: #f0f4f8;
+    background: #223843;
     margin: 0;
     padding: 0;
     text-align: center;
@@ -18,7 +19,7 @@ body {
 .container {
     max-width: 800px;
     margin: 30px auto;
-    background: #ffffff;
+    background: #eff1f3;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
@@ -27,7 +28,7 @@ body {
 .page-title {
     font-size: 2em;
     font-weight: bold;
-    color: #222;
+    color: #223843;
     text-transform: uppercase;
     margin-bottom: 20px;
 }
@@ -267,6 +268,10 @@ body.no-scroll {
                 <li id="authLink"><a href="#">Logout</a></li>
             </ul>
         </nav>
+        <div class="user-info">
+            <div class="user-avatar" id="userAvatar"></div>
+            <div class="user-greeting" id="userGreeting"></div>
+        </div>
     </header>
 
     <div class="travel-list-container">
@@ -277,5 +282,39 @@ body.no-scroll {
     </div>
 
     <script src="/js/addvisit.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const authLink = document.getElementById("authLink");
+
+            // Check if user is logged in
+            if (!localStorage.getItem("loggedInUser")) {
+                window.location.href = "/login.html"; // Redirect if not logged in
+            } else {
+                // Set Logout functionality
+                const userAvatar = document.getElementById("userAvatar");
+                const loggedInUser = localStorage.getItem("loggedUserName");
+                const userGreeting = document.getElementById("userGreeting");
+
+                // Generate Initials
+                const initials = loggedInUser.split(" ").map(word => word[0]).join("").toUpperCase();
+                userAvatar.textContent = initials;
+                
+                // Set greeting text
+                userGreeting.textContent = `Hello, ${loggedInUser}!`;
+                // Store greeting text for hover effect
+                userAvatar.setAttribute("data-hover", `Hello, ${loggedInUser}!`);
+                // Set Logout functionality
+                authLink.innerHTML = '<a href="#" id="logoutBtn">Logout</a>';
+                document.getElementById("logoutBtn").addEventListener("click", function (event) {
+                    event.preventDefault(); // Prevent default anchor behavior
+                    localStorage.removeItem("loggedInUser"); // Remove user session
+                    localStorage.removeItem("loggedUserName");
+                    alert("Logged out successfully!"); // Show logout success message
+                    window.location.href = "/index.html"; // Redirect to homepage
+                });
+            }
+        });
+    </script>
+
 </body>
 </html>

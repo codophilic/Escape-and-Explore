@@ -6,6 +6,7 @@
     <title>Itinerary</title>
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/itinerary.css">
+    <link rel="icon" type="image/jpg" href="/images/favicon.jpg">
 </head>
 <body>
     <script>
@@ -15,6 +16,19 @@
             const authLink = document.getElementById("authLink");
         
             if (localStorage.getItem("loggedInUser")) {
+                                // Set Logout functionality
+                                const userAvatar = document.getElementById("userAvatar");
+                const loggedInUser = localStorage.getItem("loggedUserName");
+                const userGreeting = document.getElementById("userGreeting");
+
+                // Generate Initials
+                const initials = loggedInUser.split(" ").map(word => word[0]).join("").toUpperCase();
+                userAvatar.textContent = initials;
+                
+                // Set greeting text
+                userGreeting.textContent = `Hello, ${loggedInUser}!`;
+                // Store greeting text for hover effect
+                userAvatar.setAttribute("data-hover", `Hello, ${loggedInUser}!`);
                 // User is logged in
                 loggedInHeader.style.display = "block";
                 loggedOutHeader.style.display = "none";
@@ -52,6 +66,10 @@
                         <li id="authLink"><a href="#">Logout</a></li>
                     </ul>
                 </nav>
+                <div class="user-info">
+                    <div class="user-avatar" id="userAvatar"></div>
+                    <div class="user-greeting" id="userGreeting"></div>
+                </div>
             </header>
             </header>
         
@@ -81,5 +99,21 @@
         <div id="itinerary-content" class="itinerary-card"></div>
     </div>
 
+
+    <div class="home-button-container" onclick="goHome()">
+        <button class="home-button">🏠 Home</button>
+    </div>
+
+    
+    <script>
+        function goHome() {
+            if (localStorage.getItem("loggedInUser")) {
+                window.location.href = "/dashboard.html"; // Redirects to home page
+            }else{
+                window.location.href = "/"; // Redirects to home page
+            }
+        }
+    
+    </script>
 </body>
 </html>

@@ -1,6 +1,3 @@
--- create database foodwaste;
-
--- CREATE DATABASE user_management;
 create database escapeandexplore;
 USE escapeandexplore;
 -- SHOW databases;
@@ -19,7 +16,6 @@ USE escapeandexplore;
  ('Harsh','hp','1234','abc'), ('Harleen','HP','1234','xyz');
  
  select * from user_table;
- truncate user_table;
 
   CREATE TABLE user_visits (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -30,7 +26,7 @@ USE escapeandexplore;
 );
 
  select * from user_visits;
- truncate bookings;
+ truncate user_visits;
  create table bookings(
      bookingid INT AUTO_INCREMENT PRIMARY KEY,
      user_id varchar(255) NOT NULL,

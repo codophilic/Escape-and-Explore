@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>State Information</title>
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="icon" type="image/jpg" href="/images/favicon.jpg">
     <style>
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
@@ -13,25 +14,55 @@ body {
     font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
-    background: linear-gradient(135deg, #2E3192, #1BFFFF);
-    color: #fff;
+    background: #223843;
+    color: #eff1f3;
 }
 
 .container {
     width: 80%;
     margin: 30px auto;
     padding: 25px;
-    background: rgba(255, 255, 255, 0.15);
+    background: #eff1f3;
     backdrop-filter: blur(10px);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    box-shadow: 2px 2px 7px 7px rgb(255, 255, 255);
+    text-align: center;
     border-radius: 15px;
     text-align: center;
 }
 
+
+.container::before {
+    content: "";
+    pointer-events: none; /* ✅ This makes sure clicks go through */
+    z-index: -1; /* ✅ Keeps it behind the content */
+    position: absolute;
+    inset: -4px; /* Slightly outside the div */
+    border-radius: 12px;
+    background: linear-gradient(90deg, rgb(103, 8, 1), #eee890, rgb(103, 8, 1));
+    background-size: 200% 200%;
+    padding: 4px;
+    mask: linear-gradient(black, black) content-box, linear-gradient(black, black);
+    mask-composite: exclude;
+    -webkit-mask: linear-gradient(black, black) content-box, linear-gradient(black, black);
+    -webkit-mask-composite: xor;
+    animation: glow-animate-out-div 3s linear infinite;
+}
+
+@keyframes glow-animate-out-div {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
 h1 {
     font-size: 2.8em;
     font-weight: 700;
-    color: #f8f9fa;
+    color: #2d232e;
     text-transform: uppercase;
     text-align: center;
     text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.4);
@@ -43,9 +74,9 @@ h1 {
 
 /* Hover Effect */
 h1:hover {
-    color: #ffcc00; /* Gold color on hover */
-    text-shadow: 0px 0px 12px rgba(255, 204, 0, 0.8), 
-                 0px 0px 20px rgba(255, 204, 0, 0.5);
+    color: #dbecea; /* Gold color on hover */
+    text-shadow: 0px 0px 12px #2c423f, 
+                 0px 0px 20px #2c423f;
     letter-spacing: 5px;
     transform: scale(1.05);
 }
@@ -56,7 +87,7 @@ h1::after {
     position: absolute;
     width: 100%;
     height: 4px;
-    background: #ffcc00;
+    background: #2c423f;
     left: 0;
     bottom: -5px;
     border-radius: 5px;
@@ -68,7 +99,6 @@ h1::after {
 h1:hover::after {
     transform: scaleX(1);
 }
-
 
 .state-map {
     width: 100%;
@@ -98,14 +128,18 @@ h1:hover::after {
     margin-top: 30px;
     display: flex;
     gap: 20px;
+    padding-top: 25px;
+    padding-left: 25px;
+    padding-right: 25px;
     overflow-x: auto;
     padding-bottom: 15px;
 }
 
 .city-card {
     flex: 0 0 260px;
+    padding-top: 10px;
     padding: 15px;
-    background: rgba(255, 255, 255, 0.2);
+    background: #dbd3d8;
     backdrop-filter: blur(5px);
     border-radius: 12px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.3);
@@ -115,10 +149,41 @@ h1:hover::after {
 
 }
 
+.city-card::before {
+    content: "";
+    pointer-events: none; /* ✅ This makes sure clicks go through */
+    z-index: -1; /* ✅ Keeps it behind the content */
+    position: absolute;
+    inset: -4px; /* Slightly outside the div */
+    border-radius: 12px;
+    background: linear-gradient(90deg, rgb(103, 8, 1), #eee890, rgb(103, 8, 1));
+    background-size: 200% 200%;
+    padding: 4px;
+    mask: linear-gradient(black, black) content-box, linear-gradient(black, black);
+    mask-composite: exclude;
+    -webkit-mask: linear-gradient(black, black) content-box, linear-gradient(black, black);
+    -webkit-mask-composite: xor;
+    animation: glow-animate-out-div-city-card 3s linear infinite;
+}
+
+@keyframes glow-animate-out-div-city-card {
+    0%{
+        background-position: 0% 50%;
+    }
+    50%{
+        background-position: 100% 50%;
+    }
+    100%{
+        background-position: 0% 100%;
+    }
+}
+
 .city-card:hover {
     transform: translateY(-10px);
-    background: rgba(255, 255, 255, 0.3);
-    color: #f90e02;
+    background: #36827f;
+    color: #fefefe;
+    text-shadow: 0px 0px 12px #2c423f, 
+    0px 0px 20px #2c423f;
 }
 
 .city-card img {
@@ -132,8 +197,8 @@ h1:hover::after {
     display: inline-block;
     padding: 12px 20px;
     margin-top: 15px;
-    background: linear-gradient(135deg, #003366, #0099cc);
-    color: white;
+    background: #223843;
+    color: #eff1f3;
     border: none;
     border-radius: 8px;
     cursor: pointer;
@@ -142,7 +207,9 @@ h1:hover::after {
 }
 
 .view-itinerary:hover {
-    background: linear-gradient(135deg, #ff7e5f, #ffcc00);
+    background: #eff1f3;
+    color: #223843;
+
 }
 
 .back-home-container {
@@ -168,13 +235,13 @@ h1:hover::after {
 .info span {
     transition: background-color 0.1s ease, color 0.1s ease;
     cursor: pointer;
-    color:#003366;
+    color:#2d232e;
     font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 .info span:hover {
-    background-color: rgb(7, 7, 7);
-    color: rgb(253, 253, 253);
+    background-color: #2c423f;
+    color: #5dd39e;
     border-radius: 5px;
     padding: 2px 5px;
 }
@@ -185,6 +252,136 @@ h1:hover::after {
     word-spacing: 2px;
 }
 
+        .video-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); /* Increased width */
+            gap: 30px;
+            padding: 50px 50px 40px 215px;
+            max-width: 800px;
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%; /* Aspect Ratio 16:9 */
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0px 4px 20px rgba(255, 255, 255, 0.3);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .video-container:hover {
+            transform: scale(1.05);
+        }
+
+        video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+            object-fit: cover;
+        }
+
+        /* Progress bar (Timer effect) */
+        .progress-bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 4px;
+            width: 0%;
+            background: #ffcc00;
+            transition: width 0.1s linear;
+        }
+        .modal {
+          display: none;
+          position: fixed;
+          z-index: 1000;
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          background-color: rgba(0, 0, 0, 0.5);
+        }
+        .modal-content {
+          background-color: white;
+          margin: 10% auto;
+          padding: 20px;
+          width: 50%;
+          border-radius: 8px;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        #close-modal {
+          float: right;
+          font-size: 24px;
+          cursor: pointer;
+        }
+</style>
+<style>
+.back-home {
+    padding: 12px 20px;
+    font-size: 18px;
+    background: #003366;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+}
+
+.back-home:hover {
+    background: #e96a4c;
+}
+
+.home-button-container {
+    text-align: center;
+    margin: 40px 0;
+}
+
+.home-button {
+    --border-angle: 0deg;
+    background: linear-gradient(white, white) padding-box;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    padding: 12px 24px;
+    border: 0.4rem solid transparent;
+    border-radius: 50px;
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+    animation: border-angle-rotate 3s infinite linear;
+}
+
+.home-button::before {
+    content: "";
+    position: absolute;
+    inset: -4px;
+    border-radius: 50px;
+    z-index: -1;
+    background: repeating-conic-gradient(
+        from var(--border-angle),
+        #eff1f3,
+        #dbd3d8 30deg,
+        #f3fae1 60deg,
+        #f7f6c5 90deg,
+        #ff6b6b 120deg
+    );
+    animation: border-angle-rotate 4s infinite linear;
+}
+
+
+@keyframes border-angle-rotate {
+    from { --border-angle: 0deg; }
+    to { --border-angle: 360deg; }
+}
+
+@property --border-angle {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+}
     </style>
 </head>
 <body>
@@ -195,6 +392,19 @@ document.addEventListener("DOMContentLoaded", function () {
     const authLink = document.getElementById("authLink");
 
     if (localStorage.getItem("loggedInUser")) {
+        // Set Logout functionality
+                const userAvatar = document.getElementById("userAvatar");
+                const loggedInUser = localStorage.getItem("loggedUserName");
+                const userGreeting = document.getElementById("userGreeting");
+
+                // Generate Initials
+                const initials = loggedInUser.split(" ").map(word => word[0]).join("").toUpperCase();
+                userAvatar.textContent = initials;
+                
+                // Set greeting text
+                userGreeting.textContent = `Hello, ${loggedInUser}!`;
+                // Store greeting text for hover effect
+                userAvatar.setAttribute("data-hover", `Hello, ${loggedInUser}!`);
         // User is logged in
         loggedInHeader.style.display = "block";
         loggedOutHeader.style.display = "none";
@@ -232,6 +442,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 <li id="authLink"><a href="#">Logout</a></li>
             </ul>
         </nav>
+        <div class="user-info">
+                    <div class="user-avatar" id="userAvatar"></div>
+                    <div class="user-greeting" id="userGreeting"></div>
+                </div>
     </header>
     </header>
 
@@ -259,15 +473,34 @@ document.addEventListener("DOMContentLoaded", function () {
     <div class="container">
         <h1 id="state-name"></h1>
         <img id="state-map" class="state-map" src="" alt="State Map">
+        <h1>Description</h1>
+        <br/>
+        <br/>
         <div class="state-content">
             <div class="info" id="description" class="description">
             </div>
-            <div class="image-gallery" id="image-gallery"></div>
+        </div>
+        <br/>
+        <br/>
+        <h1>History</h1>
+        <div class="video-gallery" id="history">
+        </div>
+        <br/>
+        <br/>
+        <h1>Tradition</h1>
+        <div class="video-gallery" id="tradition">
         </div>
 
+        <br/>
+        <br/>
+        <h1>Food & Culture</h1>
+        <div class="video-gallery" id="foodculture">
+        </div>
+    
         <br></br>
         <h1>Popular Places to Visit</h1>
-        <div class="scrollable-cities" id="cities-container"></div>
+        <div class="scrollable-cities" id="cities-container">
+        </div>
 
     </div>
 
@@ -279,58 +512,9 @@ document.addEventListener("DOMContentLoaded", function () {
         </div>
       </div>
 
-      <div class="back-home-container">
-        <button class="back-home" onclick="goHome()">🏠 Back to Home</button>
-    </div>
-    
-      
-      <style>
-        .modal {
-          display: none;
-          position: fixed;
-          z-index: 1000;
-          left: 0;
-          top: 0;
-          width: 100%;
-          height: 100%;
-          background-color: rgba(0, 0, 0, 0.5);
-        }
-        .modal-content {
-          background-color: white;
-          margin: 10% auto;
-          padding: 20px;
-          width: 50%;
-          border-radius: 8px;
-          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-        #close-modal {
-          float: right;
-          font-size: 24px;
-          cursor: pointer;
-        }
-
-
-        .back-home-container {
-    text-align: center;
-    margin: 30px 0;
-}
-
-.back-home {
-    padding: 12px 20px;
-    font-size: 18px;
-    background: #003366;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background 0.3s ease-in-out;
-}
-
-.back-home:hover {
-    background: #e96a4c;
-}
-
-      </style>
+      <div class="home-button-container" onclick="goHome()">
+    <button class="home-button">🏠 Home</button>
+</div>
 
 <script>
     function goHome() {
@@ -340,6 +524,7 @@ document.addEventListener("DOMContentLoaded", function () {
             window.location.href = "/"; // Redirects to home page
         }
     }
+
 </script>
 <script src="/js/stateData.js"></script>
 

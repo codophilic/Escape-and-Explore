@@ -5,12 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Bookings</title>
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="icon" type="image/jpg" href="/images/favicon.jpg">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
 
         body {
             font-family: "Poppins", sans-serif;
-            background: linear-gradient(to right, #f9f5f4, #feb47b);
+            background: #223843;
             margin: 0;
             padding: 0;
             text-align: center;
@@ -19,7 +20,7 @@
         .container {
             max-width: 900px;
             margin: 40px auto;
-            background: #ffffff;
+            background: #eff1f3;
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
@@ -29,7 +30,7 @@
         .page-title {
             font-size: 2.2em;
             font-weight: bold;
-            color: #222;
+            color: #223843;
             text-transform: uppercase;
             margin-bottom: 20px;
             letter-spacing: 2px;
@@ -40,7 +41,7 @@
         }
 
         .booking-card {
-            background: white;
+            background: #dbd3d8;
             padding: 15px;
             margin: 15px 0;
             border-radius: 10px;
@@ -57,7 +58,7 @@
 
         .booking-card h3 {
             margin: 0;
-            color: #007bff;
+            color: #2d232e;
             font-weight: bold;
         }
 
@@ -127,6 +128,55 @@
             from { transform: translateY(30px); opacity: 0; }
             to { transform: translateY(0); opacity: 1; }
         }
+        
+.home-button-container {
+    text-align: center;
+    margin: 40px 0;
+}
+
+.home-button {
+    --border-angle: 0deg;
+    background: linear-gradient(white, white) padding-box;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    padding: 12px 24px;
+    border: 0.4rem solid transparent;
+    border-radius: 50px;
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+    animation: border-angle-rotate 3s infinite linear;
+}
+
+.home-button::before {
+    content: "";
+    position: absolute;
+    inset: -4px;
+    border-radius: 50px;
+    z-index: -1;
+    background: repeating-conic-gradient(
+        from var(--border-angle),
+        #eff1f3,
+        #dbd3d8 30deg,
+        #f3fae1 60deg,
+        #f7f6c5 90deg,
+        #ff6b6b 120deg
+    );
+    animation: border-angle-rotate 4s infinite linear;
+}
+
+
+@keyframes border-angle-rotate {
+    from { --border-angle: 0deg; }
+    to { --border-angle: 360deg; }
+}
+
+@property --border-angle {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+}
     </style>
 </head>
 <body>
@@ -135,8 +185,20 @@
             const loggedInHeader = document.getElementById("loggedInHeader");
             const loggedOutHeader = document.getElementById("loggedOutHeader");
             const authLink = document.getElementById("authLink");
-        
             if (localStorage.getItem("loggedInUser")) {
+                // Set Logout functionality
+                const userAvatar = document.getElementById("userAvatar");
+                const loggedInUser = localStorage.getItem("loggedUserName");
+                const userGreeting = document.getElementById("userGreeting");
+
+                // Generate Initials
+                const initials = loggedInUser.split(" ").map(word => word[0]).join("").toUpperCase();
+                userAvatar.textContent = initials;
+                
+                // Set greeting text
+                userGreeting.textContent = `Hello, ${loggedInUser}!`;
+                // Store greeting text for hover effect
+                userAvatar.setAttribute("data-hover", `Hello, ${loggedInUser}!`);
                 // User is logged in
                 loggedInHeader.style.display = "block";
                 loggedOutHeader.style.display = "none";
@@ -174,6 +236,10 @@
             <li id="authLink"><a href="#">Logout</a></li>
         </ul>
     </nav>
+    <div class="user-info">
+            <div class="user-avatar" id="userAvatar"></div>
+            <div class="user-greeting" id="userGreeting"></div>
+        </div>
 </header>
 </header>
 
@@ -194,6 +260,7 @@
             <li id="authLink"><a href="/login.html">Login</a></li>
         </ul>
     </nav>
+
 </header>
 </header>
 
@@ -201,9 +268,23 @@
     <div class="container">
         <h1 class="page-title">My Bookings</h1>
         <div id="booking-list" class="booking-list"></div>
-        <a href="dashboard.html" class="back-button">Back to Home</a>
     </div>
 
+    <div class="home-button-container" onclick="goHome()">
+        <button class="home-button">🏠 Home</button>
+    </div>
+
+    
+    <script>
+        function goHome() {
+            if (localStorage.getItem("loggedInUser")) {
+                window.location.href = "/dashboard.html"; // Redirects to home page
+            }else{
+                window.location.href = "/"; // Redirects to home page
+            }
+        }
+    
+    </script>
     <script src="/js/booking.js"></script>
 </body>
 </html>

@@ -11,14 +11,14 @@ body {
     max-width: 800px;
     margin: 40px auto;
     padding: 20px;
-    background: #ffffff;
+    background: #eff1f3;
     box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
     border-radius: 10px;
     text-align: center;
 }
 
 /* Heading */
-.heading {
+/* .heading {
     font-size: 2.5em;
     font-weight: 700;
     color: #222;
@@ -27,14 +27,54 @@ body {
     border-bottom: 4px solid #ffcc00;
     padding-bottom: 10px;
     margin-bottom: 25px;
+} */
+
+.heading{
+    font-size: 40px;
+    font-weight: bold;
+    color: #223843;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-align: center;
+    position: relative;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    display: inline-block;
+    transition: color 0.3s ease-in-out;
 }
+
+/* Stylish Gradient Underline Effect */
+.heading::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    width: 80%;
+    height: 4px;
+    background: linear-gradient(90deg, #2d232e, #d8b4a0, #2d232e);
+    transform: translateX(-50%);
+    border-radius: 2px;
+    transition: width 0.3s ease-in-out;
+}
+
+/* Hover Effect */
+.heading:hover {
+    color: #36827f; /* Change text color on hover */
+    cursor: pointer;
+}
+
+.heading:hover::after {
+    width: 100%; /* Expand underline on hover */
+    background: linear-gradient(90deg, rgb(103, 8, 1), #eee890, rgb(103, 8, 1));
+}
+
 
 /* Day Container */
 .day-container {
     margin-bottom: 30px;
     padding: 15px;
-    border-left: 7px solid #ffcc00;
-    background: #fff9e6;
+    border-left: 7px solid #d8b4a0;
+    background: #dbd3d8;
     border-radius: 8px;
     transition: transform 0.2s, box-shadow 0.3s;
 }
@@ -42,13 +82,14 @@ body {
 .day-container:hover {
     transform: scale(1.02);
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
+
 }
 
 /* Date & Time Header */
 .date-header {
     font-size: 1.2em;
     color: #333;
-    background: #ffcc00;
+    background: #efe0a5;
     padding: 12px;
     border-radius: 5px;
     font-weight: bold;
@@ -72,11 +113,23 @@ body {
     cursor: pointer;
     font-size: 1em;
     text-align: left;
+    animation: fadeIn 0.5s ease-in-out;
 }
 
 .places-list li:hover {
-    background: #ffeb99;
+    background: #f3fae1;
     transform: translateX(5px);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* Price Section */
@@ -105,8 +158,8 @@ body {
     padding: 12px 20px;
     font-size: 1.2em;
     font-weight: bold;
-    color: #fff;
-    background: #ff6600;
+    color: #223843;
+    background: #d8b4a0;
     border: none;
     border-radius: 8px;
     cursor: pointer;
@@ -116,7 +169,8 @@ body {
 }
 
 .action-button:hover {
-    background: #cc5500;
+    background: #2d232e;
+    color: #eff1f3;
     transform: scale(1.05);
 }
 
@@ -129,6 +183,45 @@ body {
     background: #222;
 }
 
+h3.inneriternary{
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-align: center;
+    position: relative;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    display: inline-block;
+    transition: color 0.3s ease-in-out;
+}
+
+/* Stylish Gradient Underline Effect */
+h3.inneriternary::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    width: 80%;
+    height: 4px;
+    background: linear-gradient(90deg, #2d232e, #d8b4a0, #2d232e);
+    transform: translateX(-50%);
+    border-radius: 2px;
+    transition: width 0.3s ease-in-out;
+}
+
+/* Hover Effect */
+h3.inneriternary:hover {
+    color: #014503; /* Change text color on hover */
+    cursor: pointer;
+}
+
+h3.inneriternary:hover::after {
+    width: 100%; /* Expand underline on hover */
+    background: linear-gradient(90deg, #223843, #36827f, #223843);
+}
+
 
 /* Price Section - Styled Like a Modern Price Tag */
 .price-section {
@@ -137,18 +230,42 @@ body {
     font-size: 1.5em;
     font-weight: bold;
     color: #fff;
-    background: linear-gradient(135deg, #ff6600, #ff3300);
+    background: #000; /* Keep the div color neutral */
     border-radius: 10px;
     text-align: center;
     width: fit-content;
-    box-shadow: 0 4px 12px rgba(255, 102, 0, 0.3);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    z-index: 1;
 }
 
-.price-section:hover {
-    transform: scale(1.05);
-    box-shadow: 0 6px 18px rgba(255, 102, 0, 0.4);
+/* Glowing outline effect */
+.price-section::before {
+    content: "";
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
+    border-radius: 14px;
+    background: linear-gradient(270deg, red, orange, yellow, green, cyan, blue, violet, red);
+    background-size: 400% 400%;
+    z-index: -1;
+    animation: rainbowGlow 3s linear infinite;
+    filter: blur(5px); /* Soft glow effect */
 }
+
+/* Enhanced glow on hover */
+.price-section:hover::before {
+    filter: blur(10px); /* Intensify glow on hover */
+}
+
+/* Moving glow effect */
+@keyframes rainbowGlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
 
 /* Button Container */
 .button-container {
@@ -158,28 +275,7 @@ body {
     margin-top: 20px;
 }
 
-/* "Add to Visit" Button - 3D Effect */
-.action-button {
-    display: inline-block;
-    padding: 12px 20px;
-    font-size: 1.2em;
-    font-weight: bold;
-    color: white;
-    background: linear-gradient(135deg, #007bff, #0056b3);
-    border: none;
-    border-radius: 50px;
-    cursor: pointer;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    text-decoration: none;
-    text-align: center;
-    box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
-}
 
-.action-button:hover {
-    background: linear-gradient(135deg, #0056b3, #003d80);
-    transform: translateY(-3px);
-    box-shadow: 0 6px 15px rgba(0, 123, 255, 0.5);
-}
 
 /* Back Button - Styled as a Home Button */
 .back-button {
@@ -268,5 +364,71 @@ body {
 
 
 
+.back-home {
+    padding: 12px 20px;
+    font-size: 18px;
+    background: #003366;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+}
+
+.back-home:hover {
+    background: #e96a4c;
+}
+
+.home-button-container {
+    text-align: center;
+    margin: 40px 0;
+}
+
+.home-button {
+    --border-angle: 0deg;
+    background: linear-gradient(white, white) padding-box;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    padding: 12px 24px;
+    border: 0.4rem solid transparent;
+    border-radius: 50px;
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+    animation: border-angle-rotate 3s infinite linear;
+}
+
+.home-button::before {
+    content: "";
+    position: absolute;
+    inset: -4px;
+    border-radius: 50px;
+    z-index: -1;
+    background: repeating-conic-gradient(
+        from var(--border-angle),
+        #eff1f3,
+        #dbd3d8 30deg,
+        #f3fae1 60deg,
+        #f7f6c5 90deg,
+        #ff6b6b 120deg
+    );
+    animation: border-angle-rotate 4s infinite linear;
+}
 
 
+@keyframes border-angle-rotate {
+    from { --border-angle: 0deg; }
+    to { --border-angle: 360deg; }
+}
+
+@property --border-angle {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+}
+
+#iternariesimage{
+    width: 100%;
+    padding-top: 20px;
+}

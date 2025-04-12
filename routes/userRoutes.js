@@ -69,7 +69,7 @@ router.post("/login", (req, res) => {
         }
 
         // Login success
-        res.json({ redirect: "/index.html" , message: "Login successful" }); 
+        res.json({ redirect: "/index.html" , message: "Login successful", user_name: results[0].username }); 
     });
 });
 

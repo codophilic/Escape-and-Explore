@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Payment</title>
+    <link rel="icon" type="image/jpg" href="/images/favicon.jpg">
     <style>
         body {
     font-family: Arial, sans-serif;
@@ -137,15 +138,19 @@ footer {
 }
 #price {
     font-weight: bold;
-    font-size: 1.5em; /* Slightly larger for better emphasis */
-    background: linear-gradient(45deg, #ff0000, #ff7300); /* Gradient red-orange effect */
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent; /* Gradient text effect */
-    text-shadow: 2px 2px 8px rgba(255, 0, 0, 0.3); /* Soft glow effect */
+    font-size: 1.5em;
+    background: linear-gradient(45deg, #ff0000, #ff7300);
+    
+    background-clip: text; /* Standard property */
+    -webkit-background-clip: text; /* Webkit support */
+    
+    -webkit-text-fill-color: transparent; /* Makes gradient visible */
+    color: #ff0000; /* Fallback for unsupported browsers */
+    
     text-align: center;
-    transition: transform 0.3s ease-in-out, text-shadow 0.3s ease-in-out;
+    text-shadow: 2px 2px 8px rgba(255, 0, 0, 0.3);
+    transition: transform 0.3s ease-in-out, text-shadow 0.3s ease-in-out;
 }
-
 #price:hover {
     transform: scale(1.1); /* Slight zoom effect on hover */
     text-shadow: 3px 3px 12px rgba(255, 115, 0, 0.5); /* Enhanced glow */

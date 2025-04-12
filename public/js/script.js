@@ -189,22 +189,6 @@ const places = {
     ]
 };
 
-const statesData = {
-    "Madhya Pradesh": {
-        "capital": "Bhopal",
-        "traditions": "Rich in tribal culture, classical music, and dance forms like Pandavani.",
-        "food": "Poha, Bhutte Ka Kees, Dal Bafla, and Jalebi.",
-        "history": "Home to ancient temples, forts, and UNESCO sites like Khajuraho."
-    },
-    "Rajasthan": {
-        "capital": "Jaipur",
-        "traditions": "Known for grand festivals like Teej, vibrant folk dances, and camel fairs.",
-        "food": "Dal Baati Churma, Gatte ki Sabzi, Laal Maas.",
-        "history": "Land of Rajputana heritage, famous for forts like Amer, Mehrangarh, and Udaipur palaces."
-    }
-};
-
-
 // DOM elements
 const stateList = document.getElementById("stateList");
 const searchBox = document.getElementById("searchBox");

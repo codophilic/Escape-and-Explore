@@ -22,6 +22,8 @@ header{
     background-color: #ffffff;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
     align-items: center;
+    overflow: visible; /* Ensure elements inside can be seen outside */
+    z-index: 10; /* Ensures it's above other elements */
 
 }
 .logo img{
@@ -30,9 +32,9 @@ header{
     object-fit: contain; /* Ensure the image scales correctly */
 }
 .nav-menu ul{
-    margin-left: 600px; /* Pushes the nav menu to the right */
+    margin-left: 510px; /* Pushes the nav menu to the right */
     display: flex;
-    width: 690px;
+    width: 730px;
 }.nav-menu.index ul{
     margin-left: 615px; /* Pushes the nav menu to the right */
     display: flex;
@@ -103,7 +105,7 @@ body {
     
     margin: 0;
     padding: 0;
-    background-color: #ffffff; 
+    background-color: #223843; 
 }
 
 
@@ -116,17 +118,38 @@ body {
     width: 60%;
     padding: 10px;
     font-size: 16px;
-    border: 1px solid #ccc;
+    border: 2px solid #ccc;
     border-radius: 5px;
+    outline: none; /* Removes default browser outline */
+    transition: box-shadow 0.3s ease-in-out, border 0.3s ease-in-out;
 }
 
+/* Glow effect when typing (focus state) */
+
+#searchBox:focus {
+    border: 2px solid #4CAF50;
+    animation: glowEffect 2s infinite alternate;
+}
+
+
+@keyframes glowEffect {
+    0% { box-shadow: 0 0 5px #4CAF50; }
+    50% { box-shadow: 0 0 15px white; }
+    100% { box-shadow: 0 0 5px #4CAF50; }
+}
+
+
 .state-list {
+    background-color: #eff1f3;
     margin-top: 20px;
     display: flex;
     flex-direction: column;
     gap: 30px;
     align-items: center;
-    position: relative;
+    position: relative;    
+    padding-top: 30px;
+    padding-bottom: 30px;
+
 }
 .state-link {
     text-decoration:underline;
@@ -210,7 +233,7 @@ body {
 .state-item span {
     font-size: 22px;
     font-weight: bold;
-    color: #333;
+    color: #223843;
     flex: 1; 
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); 
 }
@@ -258,7 +281,7 @@ body {
 
   
 #about-us {
-    background: linear-gradient(to right, #ffffff, #f3f3f3); 
+    background: linear-gradient(to right, #dbd3d8, #eff1f3); 
     padding: 50px;
     border-radius: 12px;
     max-width: 900px;
@@ -338,9 +361,9 @@ body {
 }
 
 
-footer {
-    background: linear-gradient(135deg, #2c3e50, #1d3f61);
-    color: #ecf0f1; 
+ footer {
+    background: #dbd3d8;
+    color: #e74c3c; 
     padding: 30px 20px;
     text-align: center;
     font-family: 'Poppins', sans-serif;
@@ -352,15 +375,19 @@ footer {
 .footer-contact {
     max-width: 700px;
     margin: 0 auto;
+    background: #223843;
+    box-shadow:0 4px 12px rgba(255,255,255,0.1);
+    border:1px solid rgba(255,255,255,0.2);
 }
 
 
 .footer-contact h3 {
     font-size: 2rem;
     text-decoration: none;
-    color: #f1c40f; 
+    color: #ffcc00; 
     font-weight: 600;
     margin-bottom: 15px;
+    text-decoration: underline;
 }
 
 
@@ -389,6 +416,7 @@ footer a:hover {
     margin-top: 20px;
     font-size: 0.9rem;
     color: #b2bec3;
+    /* color:white; */
 }
 
 
@@ -405,48 +433,81 @@ footer a:hover {
         padding: 20px 15px;
     }
 }
+#contactForm {
+    display: flex;
+    flex-direction: column;
+    gap:10px;
+    margin-top: 15px;
+}
+
+#contactForm label {
+    font-size: 1rem;
+    margin-bottom: 5px;
+    color:white;
+}
+
+#contactForm input,
+#contactForm textarea {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    border:2px solid black;
+    color:black;
+    background: rgba(255,255,255,0.15);
+    background-color: white;
 
 
-.contact-form {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        margin-top: 15px;  
-    }
+}
 
-footer label {
-        font-size: 1rem;
-        color: white;
-        margin-bottom: 5px;
-      }
 
-.contact-form input, .contact-form textarea {
-        padding: 10px;
-        border: 1px solid #ddd;
-        border-radius: 4px;
-        font-size: 16px;
-        border:2px solid black;
-    }
+/* Focus Effect */
+.contact-form input:focus,
+.contact-form textarea:focus {
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid #ffcc00;
+}
 
-.contact-form textarea {
-        resize: vertical;
-        min-height: 100px;
-    }
+
+
+#contactForm textarea {
+    resize: vertical;
+    min-height: 100px;
+}
 
 .submit-btn {
-        background-color:#CD5C08;
-        color: white;
-        padding: 12px;
-        border: none;
-        border-radius: 4px;
-        font-size: 16px;
-        cursor: pointer;
-        border:2px solid black;
-    }
+    padding: 12px;
+    background-color: #CD5C08;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    border:2px solid black;
+}
 
 .submit-btn:hover {
-        background-color:#a25117;
-    }
+    background-color: #a25117;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.social-icons a {
+    color: white; /* Change to your preferred color */
+    font-size: 24px;
+    margin: 0 10px;
+    text-decoration: none;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: #ffcc00; /* Highlight color on hover */
+    transform: scale(1.2);
+}
 
 
 
@@ -541,7 +602,60 @@ footer label {
     animation: 0.6s ease-in-out infinite alternate;
 } 
 
+header {
+    position: relative;
+    overflow: visible; /* Ensure elements inside can be seen outside */
+    z-index: 10; /* Ensures it's above other elements */
+}
 
+.user-info {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+}
 
+/* Avatar (Initials) */
+.user-avatar {
+    width: 45px;
+    height: 45px;
+    background-color: #eee890;
+    color: rgb(103, 8, 1);
+    font-size: 18px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    text-transform: uppercase;
+    position: relative;
+    z-index: 15; /* Make sure the avatar is on top */
+}
 
- 
+/* Greeting Text (Hidden by Default) */
+.user-greeting {
+    position: absolute;
+    top: 55px; /* Adjust spacing below the avatar */
+    background-color: rgba(0, 123, 255, 0.9);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+    transform: translateY(-5px);
+    z-index: 20; /* Ensure it's above the header */
+}
+
+/* Show Greeting on Hover */
+.user-info:hover .user-greeting {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    background-color:rgb(103, 8, 1) ;
+    color: #eee890;
+}

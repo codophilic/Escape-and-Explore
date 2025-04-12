@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard - Escape and Explore</title>
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="icon" type="image/jpg" href="/images/favicon.jpg">
+
 </head>
 <body>
 <header>
@@ -23,6 +25,10 @@
                 <li id="authLink"><a href="#">Logout</a></li>
             </ul>
         </nav>
+        <div class="user-info">
+            <div class="user-avatar" id="userAvatar"></div>
+            <div class="user-greeting" id="userGreeting"></div>
+        </div>
     </header>
 </header>
 
@@ -71,7 +77,8 @@
             <h3>Contact Us</h3>
             <p>Have Questions Or Feedback?</p>
             <p>Contact Us Below!</p>
-            <form action="/submit-form" method="POST" class="contact-form">
+
+            <form id="contactForm">
                 <label for="name">Your Name:</label>
                 <input type="text" id="name" name="name" placeholder="Enter your name" required>
                 <label for="email">Your Email:</label>
@@ -83,12 +90,20 @@
         </div>
          <!-- Add the Terms & Conditions link here -->
     <div class="footer-links">
-        <p>&copy; 2025 Escape and Explore. All Rights Reserved.</p>
+        <p>&copy; 2025 Tourism Website. All Rights Reserved.</p>
         <a href="/terms.html">Terms & Conditions</a>
         |
         <a href="/privacy.html">Privacy Policy</a>
     </div>
     </footer>
+
+    <script>
+        document.getElementById("contactForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevents the form from actually submitting
+            alert("Message Sent Successfully!"); // Show alert popup
+            this.reset(); // Clears the form fields
+        });
+    </script>
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
@@ -99,10 +114,24 @@
                 window.location.href = "/login.html"; // Redirect if not logged in
             } else {
                 // Set Logout functionality
+                const userAvatar = document.getElementById("userAvatar");
+                const loggedInUser = localStorage.getItem("loggedUserName");
+                const userGreeting = document.getElementById("userGreeting");
+
+                // Generate Initials
+                const initials = loggedInUser.split(" ").map(word => word[0]).join("").toUpperCase();
+                userAvatar.textContent = initials;
+                
+                // Set greeting text
+                userGreeting.textContent = `Hello, ${loggedInUser}!`;
+                // Store greeting text for hover effect
+                userAvatar.setAttribute("data-hover", `Hello, ${loggedInUser}!`);
+                // Set Logout functionality
                 authLink.innerHTML = '<a href="#" id="logoutBtn">Logout</a>';
                 document.getElementById("logoutBtn").addEventListener("click", function (event) {
                     event.preventDefault(); // Prevent default anchor behavior
                     localStorage.removeItem("loggedInUser"); // Remove user session
+                    localStorage.removeItem("loggedUserName");
                     alert("Logged out successfully!"); // Show logout success message
                     window.location.href = "/index.html"; // Redirect to homepage
                 });

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="icon" type="image/jpg" href="/images/favicon.jpg">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -161,7 +162,7 @@ document.getElementById("loginForm").addEventListener("submit", async function(e
     if (data.redirect) {
         // Save login state to localStorage
         localStorage.setItem("loggedInUser", identifier);  // You can also store user ID or token
-
+        localStorage.setItem("loggedUserName",data.user_name);
         document.getElementById("dontexists").style.display = "none";
         document.getElementById("successMessage").style.display = "block";
 
