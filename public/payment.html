@@ -156,6 +156,29 @@ footer {
     text-shadow: 3px 3px 12px rgba(255, 115, 0, 0.5); /* Enhanced glow */
 }
 
+@media only screen and (max-width: 600px){
+    html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+
+    #payment-form {
+    width: 80%;
+    margin: 50px auto;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    border:solid black 2px;
+    border-top:5px solid hsl(269, 60%, 34%);
+}
+
+
+}
+
     </style>
 </head>
 <body>
@@ -250,7 +273,7 @@ function processPayment(event) {
     };
 
     // Send data to the server
-    fetch("http://localhost:5000/api/bookings/add", {
+    fetch(`http://${window.location.hostname}:5000/api/bookings/add`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"

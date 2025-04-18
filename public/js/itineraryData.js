@@ -1171,7 +1171,7 @@ document.addEventListener("DOMContentLoaded", function () {
             };
         
             // Send a POST request to the backend to store the visit
-            fetch("http://localhost:5000/api/visits/add", {
+            fetch(`http://${window.location.hostname}:5000/api/visits/add`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"

@@ -253,11 +253,12 @@ body.no-scroll {
     </style>
 </head>
 <body>
+    <header>
     <header id="loggedInHeader">
         <div class="logo">
             <a href="#"><img src="/images/logo.jpg" alt="logo"></a>
         </div>
-        <nav class="nav-menu">
+        <nav id="navMenu" class="nav-menu">
             <ul>
                 <li><a href="/dashboard.html">Home</a></li>
                 <li><a href="/dashboard.html/#destinations">Destinations</a></li>
@@ -272,7 +273,13 @@ body.no-scroll {
             <div class="user-avatar" id="userAvatar"></div>
             <div class="user-greeting" id="userGreeting"></div>
         </div>
+        <div style="padding-left: 70px;" class="burger" id="burger" onclick="toggleMenu()">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+          </div>
     </header>
+</header>
 
     <div class="travel-list-container">
         <h1 class="travel-list-title">My Travel List</h1>
@@ -315,6 +322,12 @@ body.no-scroll {
             }
         });
     </script>
-
+<script>
+    // Toggle the navigation menu
+function toggleMenu() {
+  const navMenu = document.getElementById('navMenu');
+  navMenu.classList.toggle('show');
+}
+</script>
 </body>
 </html>

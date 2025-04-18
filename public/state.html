@@ -6,6 +6,7 @@
     <title>State Information</title>
     <link rel="stylesheet" href="/css/style.css">
     <link rel="icon" type="image/jpg" href="/images/favicon.jpg">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
@@ -382,6 +383,14 @@ h1:hover::after {
     initial-value: 0deg;
     inherits: false;
 }
+
+@media only screen and (max-width: 600px){
+
+    .video-gallery {
+            display: contents;
+        }
+
+}
     </style>
 </head>
 <body>
@@ -431,7 +440,7 @@ document.addEventListener("DOMContentLoaded", function () {
         <div class="logo">
             <a href="#"><img src="/images/logo.jpg" alt="logo"></a>
         </div>
-        <nav class="nav-menu">
+        <nav id="navMenu"  class="nav-menu">
             <ul>
                 <li><a href="/dashboard.html">Home</a></li>
                 <li><a href="/dashboard.html/#destinations">Destinations</a></li>
@@ -446,6 +455,11 @@ document.addEventListener("DOMContentLoaded", function () {
                     <div class="user-avatar" id="userAvatar"></div>
                     <div class="user-greeting" id="userGreeting"></div>
                 </div>
+                <div style="padding-left: 70px;" class="burger" id="burger" onclick="toggleMenu()">
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
+                  </div>
     </header>
     </header>
 
@@ -455,7 +469,7 @@ document.addEventListener("DOMContentLoaded", function () {
         <div class="logo">
             <a href="#"><img src="/images/logo.jpg" alt="logo"></a>
         </div>
-        <nav class="nav-menu index">
+        <nav id="navMenu1"  class="nav-menu index">
             <ul>
                 <li><a href="/">Home</a></li>
                 <li><a href="/index.html/#destinations">Destinations</a></li>
@@ -466,6 +480,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 <li id="authLink"><a href="/login.html">Login</a></li>
             </ul>
         </nav>
+        <div class="burger1" id="burger1" onclick="toggleMenu1()">
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
+                  </div>
     </header>
     </header>
 
@@ -526,6 +545,23 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 </script>
+<script>
+    // Toggle the navigation menu
+function toggleMenu() {
+  const navMenu = document.getElementById('navMenu');
+  navMenu.classList.toggle('show');
+}
+</script>
+
+
+<script>
+    // Toggle the navigation menu
+function toggleMenu1() {
+  const navMenu1 = document.getElementById('navMenu1');
+  navMenu1.classList.toggle('show');
+}
+</script>
+
 <script src="/js/stateData.js"></script>
 
 </body>

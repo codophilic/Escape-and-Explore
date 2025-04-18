@@ -221,7 +221,7 @@
 
         if (!valid) return;
 
-        const backendUrl = "http://localhost:5000/api/users/register";
+        const backendUrl = `http://${window.location.hostname}:5000/api/users/register`;
 
         const response = await fetch(backendUrl, {
             method: "POST",

@@ -225,7 +225,7 @@
     <div class="logo">
         <a href="#"><img src="/images/logo.jpg" alt="logo"></a>
     </div>
-    <nav class="nav-menu">
+    <nav id="navMenu" class="nav-menu">
         <ul>
             <li><a href="/dashboard.html">Home</a></li>
             <li><a href="/dashboard.html/#destinations">Destinations</a></li>
@@ -240,6 +240,11 @@
             <div class="user-avatar" id="userAvatar"></div>
             <div class="user-greeting" id="userGreeting"></div>
         </div>
+        <div style="padding-left: 70px;" class="burger" id="burger" onclick="toggleMenu()">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+          </div>
 </header>
 </header>
 
@@ -285,6 +290,14 @@
         }
     
     </script>
+    <script>
+    // Toggle the navigation menu
+function toggleMenu() {
+  const navMenu = document.getElementById('navMenu');
+  navMenu.classList.toggle('show');
+}
+</script>
     <script src="/js/booking.js"></script>
+
 </body>
 </html>

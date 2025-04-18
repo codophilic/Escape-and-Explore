@@ -26,7 +26,7 @@ function fetchVisits() {
 
     const userId = loggedInUser; // Assuming `id` exists in logged-in user details
 
-    fetch(`http://localhost:5000/api/visits/${userId}`)
+    fetch(`http://${window.location.hostname}:5000/api/visits/${userId}`)
         .then(response => response.json())
         .then(data => {
             const list = document.getElementById("visit-list");
@@ -76,7 +76,7 @@ function showToastMessage(message) {
 
 // Delete visit from the database
 function deleteVisit(id) {
-    fetch(`http://localhost:5000/api/visits/delete/${id}`, { method: "DELETE" })
+    fetch(`http://${window.location.hostname}:5000/api/visits/delete/${id}`, { method: "DELETE" })
         .then(response => response.json())
         .then(data => {
             showToastMessage(data.message); // Show a toast instead of an alert

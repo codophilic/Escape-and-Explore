@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // Fetch bookings from API
-    fetch(`http://localhost:5000/api/bookings/${userId}`)
+    fetch(`http://${window.location.hostname}:5000/api/bookings/${userId}`)
         .then(response => response.json())
         .then(data => {
             if (data.success && data.bookings.length > 0) {
@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Function to cancel booking
     function cancelBooking(bookingId) {
-        fetch(`http://localhost:5000/api/bookings/cancel/${bookingId}`, { method: "PUT" })
+        fetch(`http://${window.location.hostname}:5000/api/bookings/cancel/${bookingId}`, { method: "PUT" })
             .then(response => response.json())
             .then(data => {
                 if (data.success) {

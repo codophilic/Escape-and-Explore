@@ -148,7 +148,7 @@ document.getElementById("loginForm").addEventListener("submit", async function(e
     const identifier = document.getElementById("identifier").value.trim();
     const password = document.getElementById("password").value.trim();
 
-    const backendUrl = "http://localhost:5000/api/users/login"; // Adjust for your backend VM IP
+    const backendUrl = `http://${window.location.hostname}:5000/api/users/login`; // Adjust for your backend VM IP
 
     const response = await fetch(backendUrl, {
         method: "POST",
